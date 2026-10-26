@@ -1,0 +1,516 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ceu: #f7a17c;
+  --roxo: #211b3b;
+  --rosa: #e85d75;
+  --vermelho: #c63d52;
+  --chao: #302744;
+  --texto: #fff3e8;
+}
+
+body {
+  min-height: 100vh;
+  padding: 28px 16px;
+  background:
+    radial-gradient(ellipse at top, #55406d 0%, #211b3b 65%);
+  color: var(--texto);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.cabecalho {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.subtitulo {
+  color: #f8b99b;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 52px);
+  letter-spacing: -2px;
+}
+
+.descricao {
+  margin-top: 5px;
+  color: #f5a6a8;
+  font-size: 18px;
+}
+
+.painel-jogo {
+  overflow: hidden;
+  border: 3px solid #776184;
+  border-radius: 12px;
+  background: var(--ceu);
+  box-shadow: 0 12px 0 #171329, 0 20px 40px #100c2080;
+}
+
+.hud {
+  height: 48px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #29213f;
+  position: relative;
+  z-index: 5;
+}
+
+.etiqueta {
+  color: #f7b5a1;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.pontuacao {
+  font-family: monospace;
+  font-size: 19px;
+  color: #fff1d4;
+  letter-spacing: 3px;
+}
+
+.ceu {
+  height: 330px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    #f7b28b 0%,
+    #f58b83 48%,
+    #c76a83 100%
+  );
+}
+
+/* Sol de fim de tarde */
+
+.sol {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #ffe0a1;
+  top: 45px;
+  right: 17%;
+  box-shadow: 0 0 35px #ffe0a166;
+}
+
+/* Nuvens geométricas */
+
+.nuvem {
+  position: absolute;
+  width: 65px;
+  height: 13px;
+  border-radius: 20px;
+  background: #ffe0bd;
+  opacity: 0.7;
+}
+
+.nuvem::before,
+.nuvem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.nuvem::before {
+  left: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+.nuvem::after {
+  left: 32px;
+  width: 18px;
+  height: 18px;
+}
+
+.nuvem-1 {
+  top: 65px;
+  left: 12%;
+}
+
+.nuvem-2 {
+  top: 115px;
+  right: 10%;
+  transform: scale(0.7);
+}
+
+/* Montanhas ao fundo */
+
+.montanha {
+  position: absolute;
+  bottom: 75px;
+  width: 0;
+  height: 0;
+  border-left: 120px solid transparent;
+  border-right: 120px solid transparent;
+  border-bottom: 180px solid #7d4d78;
+}
+
+.montanha-1 {
+  left: 8%;
+}
+
+.montanha-2 {
+  right: 3%;
+  transform: scale(0.75);
+  transform-origin: bottom;
+  border-bottom-color: #9c587d;
+}
+
+/* Portal tradicional japonês */
+
+.torii {
+  position: absolute;
+  width: 135px;
+  height: 145px;
+  bottom: 75px;
+  left: 54%;
+  transform: translateX(-50%);
+  opacity: 0.9;
+}
+
+.torii-topo {
+  position: absolute;
+  top: 10px;
+  left: -9px;
+  width: 153px;
+  height: 13px;
+  background: #7b2c4d;
+  border-radius: 3px;
+  transform: skewY(-3deg);
+}
+
+.torii-meio {
+  position: absolute;
+  top: 35px;
+  left: 4px;
+  width: 127px;
+  height: 9px;
+  background: #7b2c4d;
+}
+
+.torii-coluna {
+  position: absolute;
+  top: 20px;
+  width: 12px;
+  height: 115px;
+  background: #8c304e;
+}
+
+.coluna-1 {
+  left: 15px;
+}
+
+.coluna-2 {
+  right: 15px;
+}
+
+/* Chão e obstáculos decorativos */
+
+.chao {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 76px;
+  background: var(--chao);
+  border-top: 6px solid #f2a17f;
+}
+
+.linha-chao {
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  height: 3px;
+  background: #59405c;
+}
+
+.pedra {
+  position: absolute;
+  bottom: 22px;
+  width: 30px;
+  height: 24px;
+  background: #8a7791;
+  border: 3px solid #44354f;
+  border-radius: 5px 8px 3px 4px;
+}
+
+.pedra-1 {
+  right: 17%;
+}
+
+.pedra-2 {
+  right: 6%;
+  transform: scale(0.7);
+}
+
+.arbusto {
+  position: absolute;
+  bottom: 20px;
+  left: 48%;
+  width: 38px;
+  height: 23px;
+  background: #54735f;
+  border: 3px solid #344b50;
+  border-radius: 50% 50% 3px 3px;
+}
+
+/* Gato ninja feito com CSS */
+
+.gato {
+  position: absolute;
+  bottom: 43px;
+  left: 11%;
+  width: 76px;
+  height: 90px;
+  z-index: 2;
+}
+
+.cabeca {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  width: 48px;
+  height: 43px;
+  background: #252137;
+  border: 3px solid #151327;
+  border-radius: 40% 40% 35% 35%;
+  z-index: 3;
+}
+
+.orelha {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 22px solid #252137;
+}
+
+.orelha-1 {
+  left: 14px;
+  transform: rotate(-15deg);
+}
+
+.orelha-2 {
+  left: 43px;
+  transform: rotate(15deg);
+}
+
+.faixa {
+  position: absolute;
+  top: 14px;
+  left: 6px;
+  width: 61px;
+  height: 8px;
+  background: #d94b63;
+  transform: rotate(-8deg);
+  z-index: 4;
+}
+
+.olho {
+  position: absolute;
+  top: 17px;
+  width: 7px;
+  height: 5px;
+  background: #fce7a8;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.olho-1 {
+  left: 7px;
+}
+
+.olho-2 {
+  right: 7px;
+}
+
+.mascara {
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  width: 18px;
+  height: 8px;
+  border-radius: 0 0 8px 8px;
+  background: #111020;
+}
+
+.corpo {
+  position: absolute;
+  top: 48px;
+  left: 19px;
+  width: 39px;
+  height: 32px;
+  background: #302943;
+  border: 3px solid #151327;
+  border-radius: 12px 12px 5px 5px;
+  transform: rotate(-10deg);
+}
+
+.rabo {
+  position: absolute;
+  top: 52px;
+  left: 48px;
+  width: 27px;
+  height: 13px;
+  border: 6px solid #252137;
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 15px 0 0;
+  transform: rotate(-25deg);
+}
+
+.perna {
+  position: absolute;
+  top: 72px;
+  width: 13px;
+  height: 18px;
+  background: #191629;
+  border-radius: 3px;
+}
+
+.perna-1 {
+  left: 23px;
+  transform: rotate(12deg);
+}
+
+.perna-2 {
+  left: 43px;
+  transform: rotate(-12deg);
+}
+
+/* Instruções */
+
+.instrucoes {
+  padding: 26px 20px;
+  margin-top: 24px;
+  text-align: center;
+  background: #302744;
+  border: 1px solid #594566;
+  border-radius: 12px;
+}
+
+.instrucoes h2 {
+  color: #ffd09d;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.instrucoes > p {
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #e6d8e8;
+}
+
+.controles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 12px;
+}
+
+.tecla {
+  padding: 9px 14px;
+  border-radius: 6px;
+  background: #f4a17e;
+  color: #281d3a;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 3px 0 #b85f69;
+}
+
+.ou {
+  color: #c7b5d1;
+  font-size: 12px;
+}
+
+.aviso {
+  font-size: 12px;
+  color: #f5a6a8 !important;
+}
+
+footer {
+  margin-top: 22px;
+  text-align: center;
+  color: #9984ac;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+footer span {
+  color: #f5a6a8;
+}
+
+/* Adaptação para celulares */
+
+@media (max-width: 500px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .cabecalho {
+    margin-bottom: 18px;
+  }
+
+  .ceu {
+    height: 270px;
+  }
+
+  .sol {
+    width: 72px;
+    height: 72px;
+  }
+
+  .montanha {
+    border-left-width: 90px;
+    border-right-width: 90px;
+    border-bottom-width: 140px;
+  }
+
+  .torii {
+    transform: translateX(-50%) scale(0.78);
+    transform-origin: bottom;
+  }
+
+  .gato {
+    left: 5%;
+    transform: scale(0.85);
+    transform-origin: bottom left;
+  }
+
+  .instrucoes {
+    padding: 22px 14px;
+  }
+
+  .instrucoes h2 {
+    font-size: 20px;
+  }
+
+  .pontuacao {
+    font-size: 16px;
+  }
+}
